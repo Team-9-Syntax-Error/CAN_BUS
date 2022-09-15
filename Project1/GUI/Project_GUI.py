@@ -17,7 +17,6 @@ import os
 class CAN_BUS_GUI:
     def __init__(self, master) -> None:
 
-        self.pwd = os.getcwd()
         self.master = master
         master.title("CAN BUS")
 
@@ -25,13 +24,12 @@ class CAN_BUS_GUI:
         self.label = Label(master, text="CAN BUS")
         self.label.pack()
 
-
-        # Read Button file for Analyst 1
+        # Read Button Database Directory
         self.File_button_A1 = Button(master, text="Database Directory")
         self.File_button_A1.pack()
         self.File_button_A1.place(x=150, y=75)
 
-        # Read Button file for Analyst 2
+        # Read Button Project Configurations
         self.File_button_A2 = Button(master, text="Project Configurations")
         self.File_button_A2.pack()
         self.File_button_A2.place(x=525, y=75)
