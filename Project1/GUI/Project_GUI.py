@@ -12,7 +12,9 @@ import os
 # TODO: Button for project config
 #       Button to view database in finder
 #       Button for importing .Json
-#       
+#       Put Car In background
+#       Make Buttons Square
+#       Google: "Tkinter how to make **buttons square** "
 
 class CAN_BUS_GUI:
     def __init__(self, master) -> None:
@@ -33,6 +35,17 @@ class CAN_BUS_GUI:
         self.File_button_A2 = Button(master, text="Project Configurations")
         self.File_button_A2.pack()
         self.File_button_A2.place(x=525, y=75)
+
+
+    def importing_json():
+        # How To Read Json
+        # Write to Specific Json File (Initial Config)
+        pass
+
+    def configuration_Page():
+        # Make page
+        # Give options to page
+        pass
 
 
 
