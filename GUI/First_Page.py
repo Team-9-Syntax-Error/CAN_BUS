@@ -1,5 +1,5 @@
 
-from tkinter import Label, Button, Tk, Frame, filedialog
+from tkinter import LEFT, TOP, Label, Button, Tk, Frame, filedialog, PhotoImage
 import os
 
 
@@ -9,14 +9,25 @@ class First_Page_Frame(Frame):
 
         self.controller = controller
 
-        lable = Label(self, text = "This is main page")
+        #Image for button
+        self.open_project_img = PhotoImage(file = "D:\\Users\\Unity Projects\\CAN_BUS\\GUI\\OpenProject.png")
+        self.create_project_img = PhotoImage(file = "D:\\Users\\Unity Projects\\CAN_BUS\\GUI\\CreateProject.png")
+
+        #Define background image
+        self.background = PhotoImage(file = "D:\\Users\\Unity Projects\\CAN_BUS\\GUI\\Background.png")
+        
+        #Show Image
+        background_label = Label(self, image = self.background)
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        lable = Label(self, text = "This is main page", bg="#00528C", font="Helvetica, 32")
         lable.pack(side="top", fill="x", pady=10)
 
-        button = Button(self, text = "Create Project", command = lambda: controller.show_frame("Create_Project_Frame"))
-        button.pack()
+        button = Button(self, text = "Create Project", image=self.create_project_img, compound=TOP, command = lambda: controller.show_frame("Create_Project_Frame"), font="Helvetica, 25")
+        button.place(relx=0.1, rely=0.4)
 
-        button = Button(self, text = "Open Project", command = lambda: self.open_project())
-        button.pack()
+        button = Button(self, text = "Open Project", image=self.open_project_img, compound=TOP, command = lambda: self.open_project(), font="Helvetica, 25")
+        button.place(relx=0.6, rely=0.4)
  
     # Allows to select which folder your data is in. 
     def open_project(self):
