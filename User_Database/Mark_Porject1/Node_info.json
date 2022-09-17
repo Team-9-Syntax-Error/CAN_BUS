@@ -1,0 +1,52 @@
+{
+    "Nodes List": {
+
+    "Analyst": "Joseph",
+    
+    "Node_1": [
+        {"Name": "ABS"},
+        {"Active": 1}
+      ],
+      "Node_2": [
+        {"Name": "Suspension"},
+        {"Active": 1}
+      ],
+      "Node_3": [
+        {"Name": "Air Conditioner"},
+        {"Active": 1}    
+      ],
+      "Node_4": [
+        {"Name": "Instrument Panel"},
+        {"Active": 1}
+      ],
+      
+      "Node_5": [
+        {"Name": "Outside Mirror"},
+        {"Active": 1}
+    
+      ],
+      "Node_6": [
+        {"Name": "Power Window"},
+        {"Active": 1}    
+      ],
+
+      "Node_7": [
+        {"Name": "Seat Position"},
+        {"Active": 1}    
+      ],
+      "Node_8": [
+        {"Name": "Battery"},
+        {"Active": 1}
+    
+      ],
+      "Node_9": [
+        {"Name": "Transmission Control"},
+        {"Active": 1}    
+      ],
+
+      "Node_10": [
+        {"Name": "Engine Control"},
+        {"Active": 1}    
+      ]
+    }
+}
