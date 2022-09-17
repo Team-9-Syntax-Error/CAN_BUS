@@ -28,6 +28,8 @@ class CAN_BUS_GUI(Tk):
         container.pack(side = "top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
+
+        # All pages get stored in this dictionary
         self.frames ={}
 
         # Loading all pages for the GUI
