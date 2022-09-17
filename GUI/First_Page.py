@@ -20,7 +20,7 @@ class First_Page_Frame(Frame):
  
     # Allows to select which folder your data is in. 
     def open_project(self):
-        directory = filedialog.askdirectory()
+        directory = filedialog.askdirectory(initialdir=os.getcwd)
         if self.check_data_files(directory):
             data_error = Label(self, text = "The Data Is Compatable", fg="green", font=("Arial", 25))
         else:
@@ -31,8 +31,8 @@ class First_Page_Frame(Frame):
     # Check if the directory selected has all necessary data to resume the project
     def check_data_files(self, directory):
         data_required = ["Config.json", "Node_info.json", "Packet_info.json"]
-        for file in os.listdir(directory):
-            if file not in data_required:
+        for file in data_required:
+            if file not in os.listdir(directory):
                 return False
         return True
 
