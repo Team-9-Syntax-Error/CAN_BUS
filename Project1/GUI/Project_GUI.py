@@ -8,43 +8,58 @@ import webbrowser
 import shutil
 import os
 
+"""
+- Square buttons with pictures - Kevin
+- Image for background - Kevin
 
-# TODO: Button for project config
-#       Button to view database in finder
-#       Button for importing .Json
-#       Put Car In background
-#       Make Buttons Square
-#       Google: "Tkinter how to make **buttons square** "
+- Create Project button window - Joseph
+- Open Porject button window - Joseph
+
+- Home Page - Victor
+
+- Text boxes with text  in (configure pag / create project page) - Mark (Waits on Josephs create project button)
+
+- Save button for (configure page / create project page) - Roberto (Waits on Josephs create project button)
+"""
 
 class CAN_BUS_GUI:
     def __init__(self, master) -> None:
 
         self.master = master
-        master.title("CAN BUS")
+        master.title("First Page")
 
         # Setting up Texts
         self.label = Label(master, text="CAN BUS")
         self.label.pack()
 
-        # Read Button Database Directory
-        self.File_button_A1 = Button(master, text="Database Directory")
+        # Database Directory Button
+        self.File_button_A1 = Button(master, text="Create Project")
         self.File_button_A1.pack()
         self.File_button_A1.place(x=150, y=75)
 
-        # Read Button Project Configurations
-        self.File_button_A2 = Button(master, text="Project Configurations")
+        # Open Project Button
+        self.File_button_A2 = Button(master, text="Open Project")
         self.File_button_A2.pack()
         self.File_button_A2.place(x=525, y=75)
 
-
-    def importing_json():
-        # How To Read Json
-        # Write to Specific Json File (Initial Config)
+        # Use this for demo purposes...? maybe
+    def show_data_base():
+        # This function should open a window that show the data base (all .Json files)
+        pass
+        
+    def open_project():
+        # This function should prompt a window to select a folder.
+        # This function should check that folder to make sure it has: Initial_Config.json & Node_info.json
+        # If the function fails go to a first page (Failure would be cant find all json files with that name)
+        # If the function passes go to home page
         pass
 
-    def configuration_Page():
-        # Make page
-        # Give options to page
+    def create_project():
+        # This function should open a new window with a list of default configurations
+        # from the initial_config.json
+        # We should have a back button on the new window
+        # We should should have a save button that saves the project somewhere
+        # This project should then go to home page
         pass
 
 
