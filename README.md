@@ -1,7 +1,5 @@
 # CAN_BUS
- 
- ## 3 Folders ##
- 
+  
  # Default_Data_Config
   When the user first starts a project it must have initial configurations those are stored in this directory
   
