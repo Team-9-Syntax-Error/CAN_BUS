@@ -12,6 +12,9 @@ class Create_Project_Frame(Frame):
         self.place_labels()
         self.place_text()
 
+        button_First_Page = Button(self, text = "First Page", command = lambda: controller.show_frame("First_Page_Frame"))
+        button_First_Page.pack()
+
     def place_labels(self):
         analist_initials = Label(self, text="Analyst Initials:", font=self.label_font)
         analist_initials.place(x=200, y=75)
@@ -61,3 +64,4 @@ class Create_Project_Frame(Frame):
 
         bl_filename_text = Text(self, height=1, width=15, font=self.text_font)
         bl_filename_text.place(x=400, y=425)
+

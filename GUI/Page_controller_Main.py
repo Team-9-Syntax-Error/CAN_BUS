@@ -23,7 +23,8 @@ from First_Page import First_Page_Frame
 class CAN_BUS_GUI(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
-
+        
+        self.winfo_toplevel().title("CAN BUS")
         container = Frame(self)
         container.pack(side = "top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
