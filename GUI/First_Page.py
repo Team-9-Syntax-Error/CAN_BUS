@@ -41,12 +41,14 @@ class First_Page_Frame(Frame):
     # Allows to select which folder your data is in. 
     def open_project(self):
         directory = filedialog.askdirectory(initialdir=os.getcwd)
-        if self.check_data_files(directory):
-            data_error = Label(self, text = "The Data Is Compatable", fg="green", font=("Arial", 25))
-        else:
-            data_error = Label(self, text = "Error Data Not Compatable", fg="red", font=("Arial", 25))
-        data_error.pack(side="bottom", fill="x", pady=10)
-        data_error.after(5000, data_error.destroy)
+        
+        if directory:
+            if self.check_data_files(directory):
+                data_error = Label(self, text = "The Data Is Compatable", fg="green", font=("Arial", 25))
+            else:
+                data_error = Label(self, text = "Error Data Not Compatable", fg="red", font=("Arial", 25))
+            data_error.pack(side="bottom", fill="x", pady=10)
+            data_error.after(5000, data_error.destroy)
 
     # Check if the directory selected has all necessary data to resume the project
     def check_data_files(self, directory):
