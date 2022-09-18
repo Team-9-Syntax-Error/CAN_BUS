@@ -1,19 +1,51 @@
 import tkinter
 from tkinter import Label, Button, Tk, Frame, Text, font
+from Data_Manager import DataManager
 
 
 class Create_Project_Frame(Frame):
 
+    # Initialize Text
+    analyst_initials_text = Text
+    event_name_text = Text
+    event_date_text = Text
+    cc_id_text = Text
+    v_id_text = Text
+    baud_rate_text = Text
+    dbc_filename_text = Text
+    bl_filename_text = Text
+
     def __init__(self, parent, controller):
+        # Get CONFIG Data
+        self.data_manager = DataManager()
+        self.config_data = self.data_manager.get_config_data()
+
         Frame.__init__(self, parent)
         self.label_font = font.Font(family="Helvetica", size=15, weight="bold")
         self.text_font = font.Font(family="Helvetica", size=15)
         self.controller = controller
         self.place_labels()
         self.place_text()
-        #teste
-        button_first_page = Button(self, text = "First Page", command = lambda: controller.show_frame("First_Page_Frame"))
+        self.place_buttons()
+
+    def retrieve_data(self):
+        self.config_data['Project Configuration'].update({'Analyst Initials': self.analyst_initials_text.get("1.0", 'end-1c')})
+        self.config_data['Project Configuration'].update({'Event Name': self.event_name_text.get("1.0", 'end-1c')})
+        self.config_data['Project Configuration'].update({'Event Date': self.event_date_text.get("1.0", 'end-1c')})
+        self.config_data['Project Configuration'].update({'Can Connector ID': self.cc_id_text.get("1.0", 'end-1c')})
+        self.config_data['Project Configuration'].update({'Vehicle ID': self.v_id_text.get("1.0", 'end-1c')})
+        self.config_data['Project Configuration'].update({'Baud Rate': self.baud_rate_text.get("1.0", 'end-1c')})
+        self.config_data['Project Configuration'].update({'DBC File Name': self.dbc_filename_text.get("1.0", 'end-1c')})
+        self.config_data['Project Configuration'].update({'Black List File Name': self.bl_filename_text.get("1.0", 'end-1c')})
+        # Send User-Input to Data Manager
+        self.data_manager.receive_user_config_data(self.config_data)
+
+    def place_buttons(self):
+        button_first_page = Button(self, text="First Page",command=lambda: self.controller.show_frame("First_Page_Frame"))
         button_first_page.pack()
+
+        button_save = Button(self, text="Save Page", command=lambda: self.retrieve_data())
+        button_save.pack()
 
     def place_labels(self):
         analist_initials = Label(self, text="Analyst Initials:", font=self.label_font)
@@ -41,27 +73,26 @@ class Create_Project_Frame(Frame):
         bl_filename.place(x=200, y=425)
 
     def place_text(self):
-        analyst_initials_text = Text(self, height=1, width=15, font=self.text_font)
-        analyst_initials_text.place(x=400, y=75)
+        self.analyst_initials_text = Text(self, height=1, width=15, font=self.text_font)
+        self.analyst_initials_text.place(x=400, y=75)
 
-        event_name_text = Text(self, height=1, width=15, font=self.text_font)
-        event_name_text.place(x=400, y=125)
+        self.event_name_text = Text(self, height=1, width=15, font=self.text_font)
+        self.event_name_text.place(x=400, y=125)
 
-        event_date_text = Text(self, height=1, width=15, font=self.text_font)
-        event_date_text.place(x=400, y=175)
+        self.event_date_text = Text(self, height=1, width=15, font=self.text_font)
+        self.event_date_text.place(x=400, y=175)
 
-        cc_id_text = Text(self, height=1, width=15, font=self.text_font)
-        cc_id_text.place(x=400, y=225)
+        self.cc_id_text = Text(self, height=1, width=15, font=self.text_font)
+        self.cc_id_text.place(x=400, y=225)
 
-        v_id_text = Text(self, height=1, width=15, font=self.text_font)
-        v_id_text.place(x=400, y=275)
+        self.v_id_text = Text(self, height=1, width=15, font=self.text_font)
+        self.v_id_text.place(x=400, y=275)
 
-        baud_rate_text = Text(self, height=1, width=15, font=self.text_font)
-        baud_rate_text.place(x=400, y=325)
+        self.baud_rate_text = Text(self, height=1, width=15, font=self.text_font)
+        self.baud_rate_text.place(x=400, y=325)
 
-        dbc_filename_text = Text(self, height=1, width=15, font=self.text_font)
-        dbc_filename_text.place(x=400, y=375)
+        self.dbc_filename_text = Text(self, height=1, width=15, font=self.text_font)
+        self.dbc_filename_text.place(x=400, y=375)
 
-        bl_filename_text = Text(self, height=1, width=15, font=self.text_font)
-        bl_filename_text.place(x=400, y=425)
-
+        self.bl_filename_text = Text(self, height=1, width=15, font=self.text_font)
+        self.bl_filename_text.place(x=400, y=425)

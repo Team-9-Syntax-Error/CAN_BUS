@@ -1,0 +1,12 @@
+{
+ "Project Configuration": {
+  "Analyst Initials": "MA",
+  "Event Name": "Test Event",
+  "Event Date": "12/12/1999",
+  "Can Connector ID": "43",
+  "Vehicle ID": "34",
+  "Baud Rate": "69",
+  "DBC File Name": "DBC File",
+  "Black List File Name": "BL File"
+ }
+}
