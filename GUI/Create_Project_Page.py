@@ -19,6 +19,7 @@ class Create_Project_Frame(Frame):
         # Get CONFIG Data
         self.data_manager = DataManager()
         self.config_data = self.data_manager.get_config_data()
+        self.proj_data = self.config_data['Project Configuration']
         self.bg_img = PhotoImage(file="Images/Background.png")
         self.pr = parent
         self.label_pos_mult = 35
@@ -95,6 +96,7 @@ class Create_Project_Frame(Frame):
 
         self.analyst_initials_text = Text(self, height=1, width=15, font=self.text_font)
         self.analyst_initials_text.place(x=400, y=75+self.label_pos_mult)
+        self.analyst_initials_text.insert('1.0', self.proj_data.get('Analyst Initials'))
 
         self.event_name_text = Text(self, height=1, width=15, font=self.text_font)
         self.event_name_text.place(x=400, y=125+self.label_pos_mult)

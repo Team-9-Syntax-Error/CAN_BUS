@@ -10,11 +10,11 @@ import json
 
 # Temporary Data Management Class With JSON
 class DataManager:
-
     # Holds JSON to Python Dictionary
-    json_dict = dict()
+    config_data = dict()
+
     # Test File Path
-    file_path = "../User_Database/Mark_Project1/Config.json"
+    config_file_path = "../User_Database/Mark_Project1/Config.json"
 
     # Initializer
     def __init__(self):
@@ -22,21 +22,22 @@ class DataManager:
 
     # Loads JSON Contents from CONFIG File
     def load_from_file(self):
-        f = open(self.file_path)
+        f = open(self.config_file_path)
         # Set Local JSON Dictionary
-        self.json_dict = json.load(f)
+        self.config_data = json.load(f)
         f.close()
 
     # Receive User-Input From Project Configuration Page
-    def receive_user_config_data(self, data):
-        self.dump_to_file(data)
+    def receive_user_config_data(self, user_config_data):
+        self.dump_to_file(user_config_data)
 
     # Overwrite CONFIG File with Updated Information
-    def dump_to_file(self, data):
-        self.json_dict = data
-        f = open(self.file_path, "w")
-        f.write(json.dumps(self.json_dict, indent=1))
+    def dump_to_file(self, user_config_data):
+        self.config_data = user_config_data
+        f = open(self.config_file_path, "w")
+        f.write(json.dumps(self.config_data, indent=1))
         f.close()
 
     def get_config_data(self):
-        return self.json_dict
+        self.load_from_file()
+        return self.config_data
