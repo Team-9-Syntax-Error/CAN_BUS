@@ -1,15 +1,14 @@
 
+from doctest import master
+from email.mime import image
+from logging import root
 from re import fullmatch
-from tkinter import LEFT, TOP, Label, Button, Tk, Frame, filedialog, PhotoImage, Canvas
+from tkinter import BOTH, LEFT, N, TOP, Canvas, Label, Button, Tk, Frame, filedialog, PhotoImage
 import os
-import tkinter
-from matplotlib.pyplot import text
-
-from numpy import full_like
+import tkinter.font as tkFont
 
 
 class First_Page_Frame(Frame):
-
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
 
@@ -23,30 +22,33 @@ class First_Page_Frame(Frame):
         createImg_path = full_path + "CreateProject.png"
         openImg_path = full_path + "OpenProject.png"
 
+        #Font variables
+        titleFont = tkFont.Font(family="Courier", size=50, weight="bold")
+        buttonFont = "Helvetica, 25"
+
         #Image for button
         self.open_project_img = PhotoImage(file = openImg_path)
         self.create_project_img = PhotoImage(file = createImg_path)
 
-        #Define background image
+        #Image for background
         self.background = PhotoImage(file = background_path)
         
-        #Show Image
-        background_label = Label(self, image = self.background)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        #Handle background for Main Page
+        #backgroundInformation handles the background image and the text
+        backgroundInformation = Canvas(self, width=100, height=100)
+        backgroundInformation.create_image(0, 0, image = self.background, anchor = "nw") #Handle Image
+        backgroundInformation.create_text(385, 100, text='Main Page', font=titleFont, fill="white") #Handle Text
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
-        lable = Label(self, text = "This is main page",compound='top' ,bg="#00528C", font="Helvetica, 32")
-        lable.pack(side="top", fill="x", pady=10)
-
-
-
-
-        button = Button(self, text = "Create Project", image=self.create_project_img, compound=TOP, command = lambda: controller.show_frame("Create_Project_Frame"), font="Helvetica, 25")
+        #Buttons (Create & Open Project)
+        #Handle the creation of buttons in the Main Page/First_page
+        button = Button(self, text = "Create Project", image=self.create_project_img, compound=TOP, command = lambda: controller.show_frame("Create_Project_Frame"), font = buttonFont)
         button.place(relx=0.1, rely=0.4)
 
-        button = Button(self, text = "Open Project", image=self.open_project_img, compound=TOP, command = lambda: self.open_project(), font="Helvetica, 25")
+        button = Button(self, text = "Open Project", image=self.open_project_img, compound=TOP, command = lambda: self.open_project(), font = buttonFont)
         button.place(relx=0.6, rely=0.4)
  
-    # Allows to select which folder your data is in. 
+    #Allows to select which folder your data is in. 
     def open_project(self):
         directory = filedialog.askdirectory(initialdir=os.getcwd)
         
@@ -58,11 +60,10 @@ class First_Page_Frame(Frame):
             data_error.pack(side="bottom", fill="x", pady=10)
             data_error.after(5000, data_error.destroy)
 
-    # Check if the directory selected has all necessary data to resume the project
+    #Check if the directory selected has all necessary data to resume the project
     def check_data_files(self, directory):
         data_required = ["Config.json", "Node_info.json", "Packet_info.json"]
         for file in data_required:
             if file not in os.listdir(directory):
                 return False
         return True
-
