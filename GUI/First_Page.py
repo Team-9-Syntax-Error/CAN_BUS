@@ -1,10 +1,15 @@
 
 from re import fullmatch
-from tkinter import LEFT, TOP, Label, Button, Tk, Frame, filedialog, PhotoImage
+from tkinter import LEFT, TOP, Label, Button, Tk, Frame, filedialog, PhotoImage, Canvas
 import os
+import tkinter
+from matplotlib.pyplot import text
+
+from numpy import full_like
 
 
 class First_Page_Frame(Frame):
+
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
 
@@ -29,8 +34,11 @@ class First_Page_Frame(Frame):
         background_label = Label(self, image = self.background)
         background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        lable = Label(self, text = "This is main page", bg="#00528C", font="Helvetica, 32")
+        lable = Label(self, text = "This is main page",compound='top' ,bg="#00528C", font="Helvetica, 32")
         lable.pack(side="top", fill="x", pady=10)
+
+
+
 
         button = Button(self, text = "Create Project", image=self.create_project_img, compound=TOP, command = lambda: controller.show_frame("Create_Project_Frame"), font="Helvetica, 25")
         button.place(relx=0.1, rely=0.4)
