@@ -53,10 +53,12 @@ class First_Page_Frame(Frame):
         directory = filedialog.askdirectory(initialdir=os.getcwd)
         
         if directory:
-            if self.check_data_files(directory):
+            not_missing_files = self.check_data_files(directory)
+            if not_missing_files is True:
                 data_error = Label(self, text = "The Data Is Compatable", fg="green", font=("Arial", 25))
+                self.controller.show_frame("Home_Page_Frame")
             else:
-                data_error = Label(self, text = "Error Data Not Compatable", fg="red", font=("Arial", 25))
+                data_error = Label(self, text = "Error: " + not_missing_files + " Not found", fg="red", font=("Arial", 25))
             data_error.pack(side="bottom", fill="x", pady=10)
             data_error.after(5000, data_error.destroy)
 
@@ -65,5 +67,5 @@ class First_Page_Frame(Frame):
         data_required = ["Config.json", "Node_info.json", "Packet_info.json"]
         for file in data_required:
             if file not in os.listdir(directory):
-                return False
+                return file
         return True
