@@ -11,7 +11,8 @@ class First_Page_Frame(Frame):
         self.controller = controller
 
         #Path
-        path = os.getcwd()
+        path = os.path.dirname(os.path.realpath(__file__))
+        os.chdir(path)
         full_path = path + "/Images/"
         background_path = full_path + "Background.png"
         createImg_path = full_path + "CreateProject.png"
