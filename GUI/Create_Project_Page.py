@@ -17,6 +17,8 @@ class Create_Project_Frame(Frame):
 
     def __init__(self, parent, controller):
         # Get CONFIG Data
+
+        self.controller = controller
         self.data_manager = DataManager()
         self.config_data = self.data_manager.get_config_data()
         self.proj_data = self.config_data['Project Configuration']
@@ -46,6 +48,7 @@ class Create_Project_Frame(Frame):
         self.config_data['Project Configuration'].update({'Black List File Name': self.bl_filename_text.get("1.0", 'end-1c')})
         # Send User-Input to Data Manager
         self.data_manager.receive_user_config_data(self.config_data)
+        self.controller.show_frame("Home_Page_Frame")
 
     def place_buttons(self):
         back_button = Button(self, text="Back", activebackground="light blue", font=self.button_font, command=lambda: self.controller.show_frame("First_Page_Frame"))

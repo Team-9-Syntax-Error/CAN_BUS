@@ -3,6 +3,7 @@
 from tkinter import Tk, Frame
 from Create_Project_Page import Create_Project_Frame
 from First_Page import First_Page_Frame
+from Home_Page import Home_Page_Frame
 
 '''
 - Square buttons with pictures - Kevin
@@ -34,7 +35,7 @@ class CAN_BUS_GUI(Tk):
         self.frames ={}
 
         # Loading all pages for the GUI
-        for F in (First_Page_Frame, Create_Project_Frame):
+        for F in (First_Page_Frame, Create_Project_Frame, Home_Page_Frame):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
