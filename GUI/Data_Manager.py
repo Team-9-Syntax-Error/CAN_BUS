@@ -14,7 +14,7 @@ class DataManager:
     config_data = dict()
 
     # Test File Path
-    config_file_path = "../User_Database/Mark_Project1/Config.json"
+    config_file_path = "../User_Database/Default_Data_Config/Config.json"
 
     # Initializer
     def __init__(self):
@@ -34,7 +34,15 @@ class DataManager:
     # Overwrite CONFIG File with Updated Information
     def dump_to_file(self, user_config_data):
         self.config_data = user_config_data
-        f = open(self.config_file_path, "w")
+        
+        #
+        # make new folder here
+        
+
+
+        #### 
+
+        f = open(self.config_file_path, "w") # write to new folder?
         f.write(json.dumps(self.config_data, indent=1))
         f.close()
 

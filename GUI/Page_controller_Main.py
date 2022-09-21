@@ -6,22 +6,6 @@ from Create_Project_Page import Create_Project_Frame
 from First_Page import First_Page_Frame
 from Home_Page import Home_Page_Frame
 
-'''
-- Square buttons with pictures - Kevin
-- Image for background - Kevin
-
-- Create Project button window - Joseph
-- Open Project button window - Joseph
-
-- Home Page - Victor
-
-- Text boxes with text  in (configure pag / create project page) - Mark (Waits on Josephs create project button)
-
-- Save button / Back button for (configure page / create project page) - Roberto (Waits on Josephs create project button)
-
-'''
-
-
 class CAN_BUS_GUI(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)

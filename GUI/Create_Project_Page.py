@@ -103,21 +103,28 @@ class Create_Project_Frame(Frame):
 
         self.event_name_text = Text(self, height=1, width=15, font=self.text_font)
         self.event_name_text.place(x=400, y=125+self.label_pos_mult)
-
+        self.event_name_text.insert('1.0', self.proj_data.get('Event Name'))
+        
         self.event_date_text = Text(self, height=1, width=15, font=self.text_font)
         self.event_date_text.place(x=400, y=175+self.label_pos_mult)
+        self.event_date_text.insert('1.0', self.proj_data.get('Event Date'))
 
         self.cc_id_text = Text(self, height=1, width=15, font=self.text_font)
         self.cc_id_text.place(x=400, y=225+self.label_pos_mult)
+        self.cc_id_text.insert('1.0', self.proj_data.get('Can Connector ID'))
 
         self.v_id_text = Text(self, height=1, width=15, font=self.text_font)
         self.v_id_text.place(x=400, y=275+self.label_pos_mult)
+        self.v_id_text.insert('1.0', self.proj_data.get('Vehicle ID'))
 
         self.baud_rate_text = Text(self, height=1, width=15, font=self.text_font)
         self.baud_rate_text.place(x=400, y=325+self.label_pos_mult)
+        self.baud_rate_text.insert('1.0', self.proj_data.get('Baud Rate'))
 
         self.dbc_filename_text = Text(self, height=1, width=15, font=self.text_font)
         self.dbc_filename_text.place(x=400, y=375+self.label_pos_mult)
+        self.dbc_filename_text.insert('1.0', self.proj_data.get('DBC File Name'))
 
         self.bl_filename_text = Text(self, height=1, width=15, font=self.text_font)
         self.bl_filename_text.place(x=400, y=425+self.label_pos_mult)
+        self.bl_filename_text.insert('1.0', self.proj_data.get('Black List File Name'))
