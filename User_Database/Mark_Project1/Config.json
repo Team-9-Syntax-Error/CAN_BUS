@@ -1,13 +1,13 @@
 {
  "Project Configuration": {
-  "Project Title": "Girl You Really Got A Hold On Me!!",
+  "Project Title": "",
   "Analyst Initials": "MA",
-  "Event Name": "Event Test",
-  "Event Date": "12/12/1999",
-  "Can Connector ID": "805747**",
-  "Vehicle ID": "000",
-  "Baud Rate": "000",
-  "DBC File Name": "File Name Test",
-  "Black List File Name": "BL Test"
+  "Event Name": "",
+  "Event Date": "",
+  "Can Connector ID": "",
+  "Vehicle ID": "",
+  "Baud Rate": "",
+  "DBC File Name": "",
+  "Black List File Name": ""
  }
 }
