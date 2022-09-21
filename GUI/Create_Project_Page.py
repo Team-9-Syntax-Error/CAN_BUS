@@ -1,5 +1,6 @@
+from msilib.schema import File
 import tkinter
-from tkinter import Label, Button, Tk, Frame, Text, font, PhotoImage, Canvas
+from tkinter import BOTH, Label, Button, Tk, Frame, Text, font, PhotoImage, Canvas
 from Data_Manager import DataManager
 
 
@@ -66,38 +67,38 @@ class Create_Project_Frame(Frame):
         save_project_button.place(x=625, y=460)
 
     def place_labels(self):
-        background_label = Label(self, image=self.bg_img)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        backgroundInformation = Canvas(self, width=100, height=100)
+        backgroundInformation.create_image(0, 0, image=self.bg_img, anchor="nw")
 
-        title = Label(self, text="Project Configuration", font=self.title_font)
-        title.place(x=230, y=10)
+        backgroundInformation.create_text(400, 20, text="Project Configuration", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
+        
+        backgroundInformation.create_text(292, 72, text="Project Title:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
+        
+        backgroundInformation.create_text(275, 122, text="Analyst Initials:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
+        
+        backgroundInformation.create_text(291, 172, text="Event Name:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
-        proj_title_label = Label(self, text="Project Title:", font=self.label_font)
-        proj_title_label.place(x=200, y=25+self.label_pos_mult)
+        backgroundInformation.create_text(298, 225, text="Event Date:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
-        analist_initials = Label(self, text="Analyst Initials:", font=self.label_font)
-        analist_initials.place(x=200, y=75+self.label_pos_mult)
+        backgroundInformation.create_text(247, 274, text="CAN Connector ID:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
-        event_name = Label(self, text="Event Name:", font=self.label_font)
-        event_name.place(x=200, y=125+self.label_pos_mult)
+        backgroundInformation.create_text(304, 324, text="Vehicle ID:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
-        event_date = Label(self, text="Event Date:", font=self.label_font)
-        event_date.place(x=200, y=175+self.label_pos_mult)
+        backgroundInformation.create_text(304, 374, text="Baud Rate:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
-        cc_id = Label(self, text="CAN Connector ID:", font=self.label_font)
-        cc_id.place(x=200, y=225+self.label_pos_mult)
+        backgroundInformation.create_text(278, 424, text="DBC File Name:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
-        v_id = Label(self, text="Vehicle ID:", font=self.label_font)
-        v_id.place(x=200, y=275+self.label_pos_mult)
-
-        baud_rate = Label(self, text="Baud Rate:", font=self.label_font)
-        baud_rate.place(x=200, y=325+self.label_pos_mult)
-
-        dbc_filename = Label(self, text="DBC File Name:", font=self.label_font)
-        dbc_filename.place(x=200, y=375+self.label_pos_mult)
-
-        bl_filename = Label(self, text="Blacklist File Name:", font=self.label_font)
-        bl_filename.place(x=200, y=425+self.label_pos_mult)
+        backgroundInformation.create_text(248, 474, text="Blacklist File Name:", font=self.title_font, fill="white")
+        backgroundInformation.pack(expand=True, fill=BOTH)
 
     def place_text(self):
         self.proj_title_text = Text(self, height=1, width=15, font=self.text_font)

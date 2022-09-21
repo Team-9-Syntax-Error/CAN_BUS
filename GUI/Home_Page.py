@@ -3,7 +3,7 @@ from re import fullmatch
 from tkinter import LEFT, TOP, Label, Button, Menu, Tk, Frame, filedialog, PhotoImage
 import os
 
-from matplotlib.font_manager import json_dump
+#from matplotlib.font_manager import json_dump
 from First_Page import First_Page_Frame
 import json
 

@@ -47,31 +47,33 @@ class First_Page_Frame(Frame):
         button = Button(self, text = "Create Project", image=self.create_project_img, compound=TOP, command = lambda: controller.show_frame("Create_Project_Frame"), font = buttonFont)
         button.place(relx=0.1, rely=0.4)
 
-        button = Button(self, text = "Open Project", image=self.open_project_img, compound=TOP, command = lambda: self.open_project(), font = buttonFont)
+        button = Button(self, text = "Open Project", image=self.open_project_img, compound=TOP, command = lambda: self.open_project(backgroundInformation), font = buttonFont)
         button.place(relx=0.6, rely=0.4)
  
     #Allows to select which folder your data is in. 
-    def open_project (self):
+    def open_project (self, backgroundInformation):
         os.chdir("../User_Database")
         print(os.getcwd())
         directory = filedialog.askdirectory(initialdir=os.getcwd())
         os.chdir("../GUI")
+
+        #Font variable
+        messageFont = tkFont.Font(family="Calibri", size=25, weight="bold")
 
         if directory:
             not_missing_files = self.check_data_files(directory)
 
             # If the directory reports true we check for files and make our "Current Project path avaliable"
             if not_missing_files is True:
-                data_error = Label(self, text = "The Data Is Compatable", fg="green", font=("Arial", 25))
+                data_error = backgroundInformation.create_text(385, 450, text='The Data Is Compatable', font = messageFont, fill="green")
                 with open("../User_Database/Current_Project.json", "w") as outfile:
                     json.dump({"Current_Project": directory}, outfile)
                 self.controller.show_frame("Home_Page_Frame")
 
             else:
-                data_error = Label(self, text = "Error: " + not_missing_files + " Not found", fg="red", font=("Arial", 25))
-                
-            data_error.pack(side="bottom", fill="x", pady=10)
-            data_error.after(5000, data_error.destroy)
+                data_error = backgroundInformation.create_text(385, 450, text="Error: " + not_missing_files + " Not found", font = messageFont, fill="red")
+            backgroundInformation.pack(expand=True, fill=BOTH)
+            self.after(5000, lambda: backgroundInformation.delete(data_error)) #Removes message after 5000
 
 
     #Check if the directory selected has all necessary data to resume the project
