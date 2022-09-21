@@ -57,9 +57,10 @@ class DataManager:
 
             # Copy over Node_Info
             os.chdir("../")
-            shutil.copy(os.getcwd() + "\\Default_Data_Config\\Node_info.json", os.getcwd()+"/"+folder_name)
+            print("*******************************************"+ os.getcwd())
+            shutil.copy(os.getcwd() + "/Default_Data_Config/Node_info.json", os.getcwd()+"/"+folder_name)
             # Copy over Packet_Info
-            shutil.copy(os.getcwd() + "\\Default_Data_Config\\Packet_info.json", os.getcwd()+"/"+folder_name)
+            shutil.copy(os.getcwd() + "/Default_Data_Config/Packet_info.json", os.getcwd()+"/"+folder_name)
 
         else:
             return False

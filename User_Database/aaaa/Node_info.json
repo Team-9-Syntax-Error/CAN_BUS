@@ -1,0 +1,37 @@
+{
+    "Nodes List": {
+
+    "Analyst": "Name",
+    
+    "Node_1": [
+        {"Name": "ABS"},
+        {"Active": 1},
+        {"Annotations": [
+          {"Ann1":"Something"},
+          {"Ann2":"Something"},
+          {"Ann3":"Something"}
+          ]
+        }
+      ],
+      "Node_2": [
+        {"Name": "ABS"},
+        {"Active": 1},
+        {"Annotations": [
+          {"Ann1":"Something"},
+          {"Ann2":"Something"},
+          {"Ann3":"Something"}
+          ]
+        }
+      ],
+      "Node_3": [
+        {"Name": "ABS"},
+        {"Active": 1},
+        {"Annotations": [
+          {"Ann1":"Something"},
+          {"Ann2":"Something"},
+          {"Ann3":"Something"}
+          ]
+        }
+      ]
+    }
+}

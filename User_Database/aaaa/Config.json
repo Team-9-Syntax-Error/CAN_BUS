@@ -1,0 +1,13 @@
+{
+ "Project Configuration": {
+  "Project Title": "aaaa",
+  "Analyst Initials": "AA",
+  "Event Name": "Event1",
+  "Event Date": "9/20/2022",
+  "Can Connector ID": "1234",
+  "Vehicle ID": "1234",
+  "Baud Rate": "115200",
+  "DBC File Name": "DBC File",
+  "Black List File Name": "Black List "
+ }
+}
