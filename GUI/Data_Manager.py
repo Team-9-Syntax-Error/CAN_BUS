@@ -1,4 +1,6 @@
 import json
+import os
+from tkinter import Label
 
 """
  Author: Mark-Anthony Avila
@@ -35,16 +37,26 @@ class DataManager:
     def dump_to_file(self, user_config_data):
         self.config_data = user_config_data
         
-        #
-        # make new folder here
-        
+    
+        folder_name = self.config_data['Project Configuration']['Project Title']
 
+        if folder_name:
 
-        #### 
+            # Making folder
+            write_dir = "../User_Database/" + folder_name
+            os.mkdir(write_dir)
+            os.chdir(write_dir)
+            
+            # Writing to folder
+            f = open("Config.json", "w+")
+            f.write(json.dumps(self.config_data, indent=1))
+            f.close()
 
-        f = open(self.config_file_path, "w") # write to new folder?
-        f.write(json.dumps(self.config_data, indent=1))
-        f.close()
+        else:
+            # If project doesnt have name
+            data_error = Label(self, text = "Error: Missing Project Name", fg="red", font=("Arial", 25))
+            data_error.pack(side="bottom", fill="x", pady=10)
+            data_error.after(5000, data_error.destroy)
 
     def get_config_data(self):
         self.load_from_file()
