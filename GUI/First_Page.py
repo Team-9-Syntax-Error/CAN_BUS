@@ -52,8 +52,11 @@ class First_Page_Frame(Frame):
  
     #Allows to select which folder your data is in. 
     def open_project (self):
-        directory = filedialog.askdirectory(initialdir=os.getcwd)
-        
+        os.chdir("../User_Database")
+        print(os.getcwd())
+        directory = filedialog.askdirectory(initialdir=os.getcwd())
+        os.chdir("../GUI")
+
         if directory:
             not_missing_files = self.check_data_files(directory)
 
