@@ -1,5 +1,4 @@
 import json, os, shutil
-from tkinter import Label
 
 """
  Author: Mark-Anthony Avila
@@ -42,7 +41,7 @@ class DataManager:
             # Making folder
             write_dir = "../User_Database/" + folder_name
             copy_dir = "/User_Database/" + folder_name
-            os.mkedirs(write_dir, exist_ok=True)
+            os.makedirs(write_dir, exist_ok=True)
             os.chdir(write_dir)
 
             # Writing to folder
