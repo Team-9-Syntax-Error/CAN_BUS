@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 from tkinter import Label
 
 """
@@ -41,8 +42,10 @@ class DataManager:
         folder_name = self.config_data['Project Configuration']['Project Title']
 
         if folder_name:
+
             # Making folder
             write_dir = "../User_Database/" + folder_name
+            copy_dir = "/User_Database/" + folder_name
             os.mkdir(write_dir)
             os.chdir(write_dir)
             
@@ -50,6 +53,13 @@ class DataManager:
             f = open("Config.json", "w+")
             f.write(json.dumps(self.config_data, indent=1))
             f.close()
+            print(os.getcwd())
+
+            # Copy over Node_Info
+            os.chdir("../")
+            shutil.copy(os.getcwd() + "\\Default_Data_Config\\Node_info.json", os.getcwd()+"/"+folder_name)
+            # Copy over Packet_Info
+            shutil.copy(os.getcwd() + "\\Default_Data_Config\\Packet_info.json", os.getcwd()+"/"+folder_name)
 
         else:
             return False
