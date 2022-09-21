@@ -4,6 +4,10 @@ from Data_Manager import DataManager
 
 
 class Create_Project_Frame(Frame):
+    # User-Input Data Dictionary
+    local_user_data = {"Project Configuration": {}}
+    local_user_config_data = local_user_data['Project Configuration']
+
     # Initialize Text
     proj_title_text = Text
     analyst_initials_text = Text
@@ -16,12 +20,8 @@ class Create_Project_Frame(Frame):
     bl_filename_text = Text
 
     def __init__(self, parent, controller):
-        # Get CONFIG Data
-
         self.controller = controller
         self.data_manager = DataManager()
-        self.config_data = self.data_manager.get_config_data()
-        self.proj_data = self.config_data['Project Configuration']
         self.bg_img = PhotoImage(file="Images/Background.png")
         self.pr = parent
         self.label_pos_mult = 35
@@ -37,29 +37,31 @@ class Create_Project_Frame(Frame):
         self.place_buttons()
 
     def retrieve_data(self):
-        self.config_data['Project Configuration'].update({'Project Title': self.proj_title_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'Analyst Initials': self.analyst_initials_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'Event Name': self.event_name_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'Event Date': self.event_date_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'Can Connector ID': self.cc_id_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'Vehicle ID': self.v_id_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'Baud Rate': self.baud_rate_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'DBC File Name': self.dbc_filename_text.get("1.0", 'end-1c')})
-        self.config_data['Project Configuration'].update({'Black List File Name': self.bl_filename_text.get("1.0", 'end-1c')})
+        # Retrieve Text Input and Store in local CONFIG Data Dictionary
+        self.local_user_config_data.update({'Project Title': self.proj_title_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'Analyst Initials': self.analyst_initials_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'Event Name': self.event_name_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'Event Date': self.event_date_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'Can Connector ID': self.cc_id_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'Vehicle ID': self.v_id_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'Baud Rate': self.baud_rate_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'DBC File Name': self.dbc_filename_text.get("1.0", 'end-1c')})
+        self.local_user_config_data.update({'Black List File Name': self.bl_filename_text.get("1.0", 'end-1c')})
+
         # Send User-Input to Data Manager
-        if self.data_manager.receive_user_config_data(self.config_data) == False:
+        if not self.data_manager.dump_data("Project Configuration", self.local_user_config_data):
             data_error = Label(self, text = "Error Project Title Missing", fg="red", font=("Arial", 25))
             data_error.pack(side="bottom", fill="x", pady=10)
             data_error.after(5000, data_error.destroy)
         else:
-           self.controller.show_frame("Home_Page_Frame")
+            self.controller.show_frame("Home_Page_Frame")
 
     def place_buttons(self):
         back_button = Button(self, text="Back", activebackground="light blue", font=self.button_font, command=lambda: self.controller.show_frame("First_Page_Frame"))
         back_button.pack()
         back_button.place(x=10, y=10)
 
-        save_project_button = Button(self, text="Create Project", activebackground="light blue", font=self.button_font, command=lambda: self.retrieve_data())
+        save_project_button = Button(self, text="Create Project", activebackground="light blue", font=self.button_font, command=lambda: self.retrieve_data(), )
         save_project_button.pack()
         save_project_button.place(x=625, y=460)
 
@@ -103,32 +105,27 @@ class Create_Project_Frame(Frame):
 
         self.analyst_initials_text = Text(self, height=1, width=15, font=self.text_font)
         self.analyst_initials_text.place(x=400, y=75+self.label_pos_mult)
-        self.analyst_initials_text.insert('1.0', self.proj_data.get('Analyst Initials'))
+        self.analyst_initials_text.insert('1.0', self.data_manager.get('Analyst Initials'))
 
         self.event_name_text = Text(self, height=1, width=15, font=self.text_font)
         self.event_name_text.place(x=400, y=125+self.label_pos_mult)
-        self.event_name_text.insert('1.0', self.proj_data.get('Event Name'))
-        
+
         self.event_date_text = Text(self, height=1, width=15, font=self.text_font)
         self.event_date_text.place(x=400, y=175+self.label_pos_mult)
-        self.event_date_text.insert('1.0', self.proj_data.get('Event Date'))
 
         self.cc_id_text = Text(self, height=1, width=15, font=self.text_font)
         self.cc_id_text.place(x=400, y=225+self.label_pos_mult)
-        self.cc_id_text.insert('1.0', self.proj_data.get('Can Connector ID'))
 
         self.v_id_text = Text(self, height=1, width=15, font=self.text_font)
         self.v_id_text.place(x=400, y=275+self.label_pos_mult)
-        self.v_id_text.insert('1.0', self.proj_data.get('Vehicle ID'))
 
         self.baud_rate_text = Text(self, height=1, width=15, font=self.text_font)
         self.baud_rate_text.place(x=400, y=325+self.label_pos_mult)
-        self.baud_rate_text.insert('1.0', self.proj_data.get('Baud Rate'))
 
         self.dbc_filename_text = Text(self, height=1, width=15, font=self.text_font)
         self.dbc_filename_text.place(x=400, y=375+self.label_pos_mult)
-        self.dbc_filename_text.insert('1.0', self.proj_data.get('DBC File Name'))
+        self.dbc_filename_text.insert('1.0', self.data_manager.get('DBC File Name'))
 
         self.bl_filename_text = Text(self, height=1, width=15, font=self.text_font)
         self.bl_filename_text.place(x=400, y=425+self.label_pos_mult)
-        self.bl_filename_text.insert('1.0', self.proj_data.get('Black List File Name'))
+        self.bl_filename_text.insert('1.0', self.data_manager.get('Black List File Name'))
