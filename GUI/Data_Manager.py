@@ -1,6 +1,4 @@
-import json
-import os
-import shutil
+import json, os, shutil
 from tkinter import Label
 
 """
@@ -30,15 +28,13 @@ class DataManager:
         self.config_data = json.load(f)
         f.close()
 
-    # Receive User-Input From Project Configuration Page
-    def receive_user_config_data(self, user_config_data):
-        return self.dump_to_file(user_config_data)
+    # Receive User-Input and Update Dictionary
+    def dump_data(self, key, user_data):
+        self.config_data[key].update(user_data)
+        return self.dump_to_file()
 
-    # Overwrite CONFIG File with Updated Information
-    def dump_to_file(self, user_config_data):
-        self.config_data = user_config_data
-        
-    
+    # Overwrite File with Updated Information
+    def dump_to_file(self):
         folder_name = self.config_data['Project Configuration']['Project Title']
 
         if folder_name:
@@ -48,7 +44,7 @@ class DataManager:
             copy_dir = "/User_Database/" + folder_name
             os.mkdir(write_dir)
             os.chdir(write_dir)
-            
+
             # Writing to folder
             f = open("Config.json", "w+")
             f.write(json.dumps(self.config_data, indent=1))
@@ -64,6 +60,19 @@ class DataManager:
         else:
             return False
 
-    def get_config_data(self):
+    # Get Key From Dictionary Wrapper
+    def get(self, key):
         self.load_from_file()
-        return self.config_data
+        temp_pointer = self.config_data
+        return self.recursive_get(key, temp_pointer)
+
+    # Get Key From Dictionary
+    @staticmethod
+    def recursive_get(key, d):
+        value = 0
+        if key in d:
+            return d.get(key)
+        for di in d:
+            if type(d.get(di)) is dict:
+                value = DataManager.recursive_get(key, d.get(di))
+        return value
