@@ -37,12 +37,12 @@ class DataManager:
     def dump_to_file(self):
         folder_name = self.config_data['Project Configuration']['Project Title']
 
-        if folder_name:
+        if folder_name != "":
 
             # Making folder
             write_dir = "../User_Database/" + folder_name
             copy_dir = "/User_Database/" + folder_name
-            os.mkdir(write_dir)
+            os.mkedirs(write_dir, exist_ok=True)
             os.chdir(write_dir)
 
             # Writing to folder

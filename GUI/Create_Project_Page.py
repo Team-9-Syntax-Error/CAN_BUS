@@ -49,7 +49,7 @@ class Create_Project_Frame(Frame):
         self.local_user_config_data.update({'Black List File Name': self.bl_filename_text.get("1.0", 'end-1c')})
 
         # Send User-Input to Data Manager
-        if not self.data_manager.dump_data("Project Configuration", self.local_user_config_data):
+        if self.data_manager.dump_data("Project Configuration", self.local_user_config_data) == False:
             data_error = Label(self, text = "Error Project Title Missing", fg="red", font=("Arial", 25))
             data_error.pack(side="bottom", fill="x", pady=10)
             data_error.after(5000, data_error.destroy)
@@ -109,18 +109,23 @@ class Create_Project_Frame(Frame):
 
         self.event_name_text = Text(self, height=1, width=15, font=self.text_font)
         self.event_name_text.place(x=400, y=125+self.label_pos_mult)
+        self.event_name_text.insert('1.0', self.data_manager.get('Event Name'))
 
         self.event_date_text = Text(self, height=1, width=15, font=self.text_font)
         self.event_date_text.place(x=400, y=175+self.label_pos_mult)
+        self.event_date_text.insert('1.0', self.data_manager.get('Event Date'))
 
         self.cc_id_text = Text(self, height=1, width=15, font=self.text_font)
         self.cc_id_text.place(x=400, y=225+self.label_pos_mult)
+        self.cc_id_text.insert('1.0', self.data_manager.get('Can Connector ID'))
 
         self.v_id_text = Text(self, height=1, width=15, font=self.text_font)
         self.v_id_text.place(x=400, y=275+self.label_pos_mult)
+        self.v_id_text.insert('1.0', self.data_manager.get('Vehicle ID'))
 
         self.baud_rate_text = Text(self, height=1, width=15, font=self.text_font)
         self.baud_rate_text.place(x=400, y=325+self.label_pos_mult)
+        self.baud_rate_text.insert('1.0', self.data_manager.get('Baud Rate'))
 
         self.dbc_filename_text = Text(self, height=1, width=15, font=self.text_font)
         self.dbc_filename_text.place(x=400, y=375+self.label_pos_mult)
