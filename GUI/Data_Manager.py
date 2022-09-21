@@ -31,7 +31,7 @@ class DataManager:
 
     # Receive User-Input From Project Configuration Page
     def receive_user_config_data(self, user_config_data):
-        self.dump_to_file(user_config_data)
+        return self.dump_to_file(user_config_data)
 
     # Overwrite CONFIG File with Updated Information
     def dump_to_file(self, user_config_data):
@@ -41,7 +41,6 @@ class DataManager:
         folder_name = self.config_data['Project Configuration']['Project Title']
 
         if folder_name:
-
             # Making folder
             write_dir = "../User_Database/" + folder_name
             os.mkdir(write_dir)
@@ -53,10 +52,7 @@ class DataManager:
             f.close()
 
         else:
-            # If project doesnt have name
-            data_error = Label(self, text = "Error: Missing Project Name", fg="red", font=("Arial", 25))
-            data_error.pack(side="bottom", fill="x", pady=10)
-            data_error.after(5000, data_error.destroy)
+            return False
 
     def get_config_data(self):
         self.load_from_file()

@@ -47,8 +47,12 @@ class Create_Project_Frame(Frame):
         self.config_data['Project Configuration'].update({'DBC File Name': self.dbc_filename_text.get("1.0", 'end-1c')})
         self.config_data['Project Configuration'].update({'Black List File Name': self.bl_filename_text.get("1.0", 'end-1c')})
         # Send User-Input to Data Manager
-        self.data_manager.receive_user_config_data(self.config_data)
-        self.controller.show_frame("Home_Page_Frame")
+        if self.data_manager.receive_user_config_data(self.config_data) == False:
+            data_error = Label(self, text = "Error Project Title Missing", fg="red", font=("Arial", 25))
+            data_error.pack(side="bottom", fill="x", pady=10)
+            data_error.after(5000, data_error.destroy)
+        else:
+           self.controller.show_frame("Home_Page_Frame")
 
     def place_buttons(self):
         back_button = Button(self, text="Back", activebackground="light blue", font=self.button_font, command=lambda: self.controller.show_frame("First_Page_Frame"))
