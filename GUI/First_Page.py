@@ -6,12 +6,13 @@ from re import fullmatch
 from tkinter import BOTH, LEFT, N, TOP, Canvas, Label, Button, Tk, Frame, filedialog, PhotoImage
 import os
 import tkinter.font as tkFont
+import json
 
 
 class First_Page_Frame(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
-
+        self.open_project_directory = ""
         self.controller = controller
 
         #Path
@@ -21,6 +22,7 @@ class First_Page_Frame(Frame):
         background_path = full_path + "Background.png"
         createImg_path = full_path + "CreateProject.png"
         openImg_path = full_path + "OpenProject.png"
+
 
         #Font variables
         titleFont = tkFont.Font(family="Courier", size=50, weight="bold")
@@ -49,18 +51,25 @@ class First_Page_Frame(Frame):
         button.place(relx=0.6, rely=0.4)
  
     #Allows to select which folder your data is in. 
-    def open_project(self):
+    def open_project (self):
         directory = filedialog.askdirectory(initialdir=os.getcwd)
         
         if directory:
             not_missing_files = self.check_data_files(directory)
+
+            # If the directory reports true we check for files and make our "Current Project path avaliable"
             if not_missing_files is True:
                 data_error = Label(self, text = "The Data Is Compatable", fg="green", font=("Arial", 25))
+                with open("../User_Database/Current_Project.json", "w") as outfile:
+                    json.dump({"Current_Project": directory}, outfile)
                 self.controller.show_frame("Home_Page_Frame")
+
             else:
                 data_error = Label(self, text = "Error: " + not_missing_files + " Not found", fg="red", font=("Arial", 25))
+                
             data_error.pack(side="bottom", fill="x", pady=10)
             data_error.after(5000, data_error.destroy)
+
 
     #Check if the directory selected has all necessary data to resume the project
     def check_data_files(self, directory):
@@ -69,3 +78,5 @@ class First_Page_Frame(Frame):
             if file not in os.listdir(directory):
                 return file
         return True
+    
+    

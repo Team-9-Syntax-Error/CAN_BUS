@@ -1,5 +1,6 @@
 
 
+from msilib.schema import Directory
 from tkinter import Tk, Frame
 from Create_Project_Page import Create_Project_Frame
 from First_Page import First_Page_Frame
@@ -48,7 +49,7 @@ class CAN_BUS_GUI(Tk):
     def show_frame(self, page_name):
         frame = self.frames[page_name]
         frame.tkraise()
-
+    
 # This starts everything
 if __name__ == "__main__":
     can_gui = CAN_BUS_GUI()
