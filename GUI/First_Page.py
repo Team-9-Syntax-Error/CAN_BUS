@@ -53,11 +53,9 @@ class First_Page_Frame(Frame):
     #Allows to select which folder your data is in. 
     def open_project (self, backgroundInformation):
         os.chdir("../User_Database")
-        print(os.getcwd())
         directory = filedialog.askdirectory(initialdir=os.getcwd())
-        print(directory)
-        print(os.getcwd())
         os.chdir("../GUI")
+
         #Font variable
         messageFont = tkFont.Font(family="Calibri", size=25, weight="bold")
 

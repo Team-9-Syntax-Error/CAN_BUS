@@ -53,7 +53,6 @@ class DataManager:
             f = open("Config.json", "w+")
             f.write(json.dumps(self.config_data, indent=1))
             f.close()
-            print(os.getcwd())
 
             # Copy over Node_Info
             os.chdir("../")
