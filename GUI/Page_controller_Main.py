@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 42427b652f1d167441bee1549aa35ad0eb6dfb68
 from tkinter import Tk, Frame
 from Create_Project_Page import Create_Project_Frame
 from First_Page import First_Page_Frame
