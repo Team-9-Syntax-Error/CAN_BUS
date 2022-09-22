@@ -20,7 +20,7 @@ class Home_Page_Frame(Frame):
         Frame.__init__(self, parent)
 
         self.controller = controller
-        
+        #I just commented to add it again add current_project_title on the text section
         #current_project_directory, current_project_title = self.current_project_directory()
         lable = Label(self, text = "Home Page", bg="gray", font="Helvetica, 32")
         lable.pack(side="top", fill="x", pady=10)
@@ -46,7 +46,7 @@ class Home_Page_Frame(Frame):
       
       #This handles the CAN bus image
         canBus = Canvas(self, width=20, height=20)
-        canBus.create_image(500, 100, image = self.carImage) #Handle Image
+        canBus.create_image(380, 100, image = self.carImage) #Handle Image
         canBus.pack(expand=True, fill=BOTH)
 
         #Menu
