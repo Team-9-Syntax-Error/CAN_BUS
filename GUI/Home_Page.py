@@ -20,8 +20,8 @@ class Home_Page_Frame(Frame):
 
         self.controller = controller
         
-        current_project_directory = self.current_project_directory()
-        lable = Label(self, text = "Home Page", bg="#00528C", font="Helvetica, 32")
+        current_project_directory, current_project_title = self.current_project_directory()
+        lable = Label(self, text = current_project_title, bg="#00528C", font="Helvetica, 32")
         lable.pack(side="top", fill="x", pady=10)
 
       #
@@ -32,7 +32,7 @@ class Home_Page_Frame(Frame):
         canBus.create_image(500, 100, image = self.carImage) #Handle Image
         canBus.pack(expand=True, fill=BOTH)
 
-          #Menu
+        #Menu
         menu1 = Menu(controller)
         controller.config(menu = menu1)
 
@@ -51,6 +51,7 @@ class Home_Page_Frame(Frame):
         with open("../User_Database/Current_Project.json", 'r') as openfile:
              json_object = json.load(openfile)
              current_project_directory = json_object["Current_Project"]
-        return current_project_directory
+             current_project_title = json_object["Project_Title"]
+        return current_project_directory, current_project_title
         
 

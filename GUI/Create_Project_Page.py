@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+import tkinter
+=======
+>>>>>>> 42427b652f1d167441bee1549aa35ad0eb6dfb68
 from tkinter import BOTH, Label, Button, Tk, Frame, Text, font, PhotoImage, Canvas
 from Data_Manager import DataManager
 
