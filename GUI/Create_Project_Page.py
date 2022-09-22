@@ -25,9 +25,9 @@ class Create_Project_Frame(Frame):
         self.bg_img = PhotoImage(file="Images/Background.png")
         self.pr = parent
         self.L_x_pos = 390
-        self.L_y_pos = 0
+        self.L_y_pos = 10
         self.T_x_pos = 400
-        self.T_y_pos = -12
+        self.T_y_pos = -2
 
         Frame.__init__(self, parent)
         self.label_font = font.Font(family="Helvetica", size=15, weight="bold")
@@ -72,7 +72,7 @@ class Create_Project_Frame(Frame):
         backgroundInformation = Canvas(self, width=100, height=100)
         backgroundInformation.create_image(0, 0, image=self.bg_img, anchor="nw")
 
-        backgroundInformation.create_text(400, 20, text="Project Configuration", font=self.title_font, fill="white")
+        backgroundInformation.create_text(400, 23, text="Project Configuration", font=self.title_font, fill="white")
         backgroundInformation.pack(expand=True, fill=BOTH)
         
         backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 50, text="Project Title:", font=self.title_font, fill="white", anchor='e')
