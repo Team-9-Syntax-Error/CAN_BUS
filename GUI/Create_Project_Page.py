@@ -23,7 +23,10 @@ class Create_Project_Frame(Frame):
         self.data_manager = DataManager()
         self.bg_img = PhotoImage(file="Images/Background.png")
         self.pr = parent
-        self.label_pos_mult = 35
+        self.L_x_pos = 390
+        self.L_y_pos = 0
+        self.T_x_pos = 400
+        self.T_y_pos = -12
 
         Frame.__init__(self, parent)
         self.label_font = font.Font(family="Helvetica", size=15, weight="bold")
@@ -71,65 +74,65 @@ class Create_Project_Frame(Frame):
         backgroundInformation.create_text(400, 20, text="Project Configuration", font=self.title_font, fill="white")
         backgroundInformation.pack(expand=True, fill=BOTH)
         
-        backgroundInformation.create_text(292, 72, text="Project Title:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 50, text="Project Title:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
         
-        backgroundInformation.create_text(275, 122, text="Analyst Initials:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 100, text="Analyst Initials:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
         
-        backgroundInformation.create_text(291, 172, text="Event Name:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 150, text="Event Name:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
 
-        backgroundInformation.create_text(298, 225, text="Event Date:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 200, text="Event Date:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
 
-        backgroundInformation.create_text(247, 274, text="CAN Connector ID:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 250, text="CAN Connector ID:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
 
-        backgroundInformation.create_text(304, 324, text="Vehicle ID:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 300, text="Vehicle ID:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
 
-        backgroundInformation.create_text(304, 374, text="Baud Rate:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 350, text="Baud Rate:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
 
-        backgroundInformation.create_text(278, 424, text="DBC File Name:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 400, text="DBC File Name:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
 
-        backgroundInformation.create_text(248, 474, text="Blacklist File Name:", font=self.title_font, fill="white")
+        backgroundInformation.create_text(self.L_x_pos, self.L_y_pos + 450, text="Blacklist File Name:", font=self.title_font, fill="white", anchor='e')
         backgroundInformation.pack(expand=True, fill=BOTH)
 
     def place_text(self):
         self.proj_title_text = Text(self, height=1, width=15, font=self.text_font)
-        self.proj_title_text.place(x=400, y=25+self.label_pos_mult)
+        self.proj_title_text.place(x=400, y=self.T_y_pos+50)
 
         self.analyst_initials_text = Text(self, height=1, width=15, font=self.text_font)
-        self.analyst_initials_text.place(x=400, y=75+self.label_pos_mult)
+        self.analyst_initials_text.place(x=self.T_x_pos, y=self.T_y_pos+100)
         self.analyst_initials_text.insert('1.0', self.data_manager.get('Analyst Initials'))
 
         self.event_name_text = Text(self, height=1, width=15, font=self.text_font)
-        self.event_name_text.place(x=400, y=125+self.label_pos_mult)
+        self.event_name_text.place(x=self.T_x_pos, y=self.T_y_pos+150)
         self.event_name_text.insert('1.0', self.data_manager.get('Event Name'))
 
         self.event_date_text = Text(self, height=1, width=15, font=self.text_font)
-        self.event_date_text.place(x=400, y=175+self.label_pos_mult)
+        self.event_date_text.place(x=self.T_x_pos, y=self.T_y_pos+200)
         self.event_date_text.insert('1.0', self.data_manager.get('Event Date'))
 
         self.cc_id_text = Text(self, height=1, width=15, font=self.text_font)
-        self.cc_id_text.place(x=400, y=225+self.label_pos_mult)
+        self.cc_id_text.place(x=self.T_x_pos, y=self.T_y_pos+250)
         self.cc_id_text.insert('1.0', self.data_manager.get('Can Connector ID'))
 
         self.v_id_text = Text(self, height=1, width=15, font=self.text_font)
-        self.v_id_text.place(x=400, y=275+self.label_pos_mult)
+        self.v_id_text.place(x=self.T_x_pos, y=self.T_y_pos+300)
         self.v_id_text.insert('1.0', self.data_manager.get('Vehicle ID'))
 
         self.baud_rate_text = Text(self, height=1, width=15, font=self.text_font)
-        self.baud_rate_text.place(x=400, y=325+self.label_pos_mult)
+        self.baud_rate_text.place(x=self.T_x_pos, y=self.T_y_pos+350)
         self.baud_rate_text.insert('1.0', self.data_manager.get('Baud Rate'))
 
         self.dbc_filename_text = Text(self, height=1, width=15, font=self.text_font)
-        self.dbc_filename_text.place(x=400, y=375+self.label_pos_mult)
+        self.dbc_filename_text.place(x=self.T_x_pos, y=self.T_y_pos+400)
         self.dbc_filename_text.insert('1.0', self.data_manager.get('DBC File Name'))
 
         self.bl_filename_text = Text(self, height=1, width=15, font=self.text_font)
-        self.bl_filename_text.place(x=400, y=425+self.label_pos_mult)
+        self.bl_filename_text.place(x=self.T_x_pos, y=self.T_y_pos+450)
         self.bl_filename_text.insert('1.0', self.data_manager.get('Black List File Name'))
