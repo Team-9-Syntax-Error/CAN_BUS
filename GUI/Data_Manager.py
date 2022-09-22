@@ -42,6 +42,11 @@ class DataManager:
             write_dir = "../User_Database/" + folder_name
             copy_dir = "/User_Database/" + folder_name
             os.makedirs(write_dir, exist_ok=True)
+            os.chdir("../User_Database")
+            j_file = open("Current_Project.json", 'w+')
+            j_file.write(json.dumps({"Current_Project": os.getcwd()+"/"+copy_dir, "Project_Title": folder_name}))
+            j_file.close()
+            os.chdir("../GUI")
             os.chdir(write_dir)
 
             # Writing to folder

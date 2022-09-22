@@ -55,19 +55,24 @@ class First_Page_Frame(Frame):
         os.chdir("../User_Database")
         print(os.getcwd())
         directory = filedialog.askdirectory(initialdir=os.getcwd())
+        print(directory)
+        print(os.getcwd())
         os.chdir("../GUI")
-
         #Font variable
         messageFont = tkFont.Font(family="Calibri", size=25, weight="bold")
 
         if directory:
             not_missing_files = self.check_data_files(directory)
+            with open("../User_Database/Current_Project.json", 'r') as openfile:
+                json_object = json.load(openfile)
+                c_pt = json_object["Project_Title"]
+
 
             # If the directory reports true we check for files and make our "Current Project path avaliable"
             if not_missing_files is True:
                 data_error = backgroundInformation.create_text(385, 450, text='The Data Is Compatable', font = messageFont, fill="green")
                 with open("../User_Database/Current_Project.json", "w") as outfile:
-                    json.dump({"Current_Project": directory}, outfile)
+                    json.dump({"Current_Project": directory,  "Project_Title": c_pt}, outfile)
                 self.controller.show_frame("Home_Page_Frame")
 
             else:

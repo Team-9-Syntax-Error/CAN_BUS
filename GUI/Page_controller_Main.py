@@ -1,6 +1,5 @@
 
 
-from msilib.schema import Directory
 from tkinter import Tk, Frame
 from Create_Project_Page import Create_Project_Frame
 from First_Page import First_Page_Frame
