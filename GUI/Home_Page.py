@@ -11,7 +11,7 @@ import json
 path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(path)
 full_path = path + "/Images/"
-canCar_path = full_path + "CAN Car.png"
+canCar_path = full_path + "CAN_BUSL.png"
 
 
 
@@ -46,7 +46,7 @@ class Home_Page_Frame(Frame):
       
       #This handles the CAN bus image
         canBus = Canvas(self, width=20, height=20)
-        canBus.create_image(380, 100, image = self.carImage) #Handle Image
+        canBus.create_image(375, 125, image = self.carImage) #Handle Image
         canBus.pack(expand=True, fill=BOTH)
 
         #Menu
