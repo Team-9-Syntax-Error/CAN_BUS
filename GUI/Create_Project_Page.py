@@ -1,5 +1,3 @@
-from msilib.schema import File
-import tkinter
 from tkinter import BOTH, Label, Button, Tk, Frame, Text, font, PhotoImage, Canvas
 from Data_Manager import DataManager
 
